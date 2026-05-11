@@ -285,7 +285,7 @@ function CounterScreen() {
                     </button>
                     <button
                       onClick={() => setDeleteStep(2)}
-                      className="flex-1 py-2.5 rounded-xl bg-rose-500 text-white font-medium text-sm hover:bg-rose-600"
+                      className="flex-1 py-2.5 rounded-xl bg-red-600 text-white font-medium text-sm hover:bg-red-700"
                     >
                       Yes, Continue
                     </button>
@@ -300,7 +300,7 @@ function CounterScreen() {
                     </button>
                     <button
                       onClick={handleDelete}
-                      className="flex-1 py-2.5 rounded-xl bg-rose-600 text-white font-medium text-sm hover:bg-rose-700"
+                      className="flex-1 py-2.5 rounded-xl bg-red-700 text-white font-medium text-sm hover:bg-red-800"
                     >
                       Delete Forever
                     </button>
