@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const AppContext = createContext();
 
-const API_URL = '/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://tapcounter-backend.onrender.com';
 
 const getGuestId = () => {
   let guestId = localStorage.getItem('guestId');
