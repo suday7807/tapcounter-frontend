@@ -97,7 +97,7 @@ function Home() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center py-12"
+            className="h-full flex flex-col items-center justify-center text-center"
           >
             <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/20 to-violet-500/20 flex items-center justify-center mx-auto mb-4">
               <Sparkles className="w-8 h-8 text-primary" />
