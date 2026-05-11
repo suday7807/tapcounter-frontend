@@ -78,7 +78,17 @@ function CounterScreen() {
 
   return (
     <div className="h-screen flex flex-col gradient-bg overflow-hidden">
-      
+      <div className="flex justify-end p-4">
+        <button
+          onClick={() => { setDeleteStep(1); setShowDeleteConfirm(true); }}
+          className="p-2 rounded-full hover:bg-white/10"
+          title="Delete"
+        >
+          <svg className="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+          </svg>
+        </button>
+      </div>
 
       <div className="flex-1 flex flex-col items-center justify-center px-6 pb-8 -mt-6">
         <motion.div
@@ -231,13 +241,6 @@ function CounterScreen() {
                   {t('save')}
                 </button>
               </div>
-
-              <button
-                onClick={() => { setDeleteStep(1); setShowDeleteConfirm(true); }}
-                className="w-full mt-4 py-2.5 rounded-xl border border-rose-500/50 text-rose-500 font-medium text-sm hover:bg-rose-500/10"
-              >
-                {t('deleteCounter') || 'Delete Counter'}
-              </button>
             </motion.div>
           </motion.div>
         )}
