@@ -58,6 +58,7 @@ const translations = {
     cycleSize: 'Cycle Size',
     save: 'Save',
     completedCycles: 'Completed Cycles',
+    deleteCounter: 'Delete Counter',
     dayStreak: 'Day Streak',
     feedback: 'Feedback & Suggestions',
     feedbackPlaceholder: 'Tell us what you would like improved in TapCounter...',

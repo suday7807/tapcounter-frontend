@@ -12,6 +12,7 @@ function CounterScreen() {
     decrementCounter, 
     settings,
     updateCounterSettings,
+    deleteCounter,
     cycleComplete,
     streak
   } = useApp();
@@ -20,6 +21,8 @@ function CounterScreen() {
   const [showSettings, setShowSettings] = useState(false);
   const [cycleSize, setCycleSize] = useState(108);
   const [animateKey, setAnimateKey] = useState(0);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [deleteStep, setDeleteStep] = useState(0);
 
   useEffect(() => {
     const found = counters.find(c => c._id === id);
@@ -50,6 +53,11 @@ function CounterScreen() {
     const newCycleSize = Math.max(1, cycleSize);
     await updateCounterSettings(id, { cycleSize: newCycleSize });
     setShowSettings(false);
+  };
+
+  const handleDelete = async () => {
+    await deleteCounter(id);
+    window.location.href = '/';
   };
 
   if (!counter) {
@@ -222,6 +230,79 @@ function CounterScreen() {
                 >
                   {t('save')}
                 </button>
+              </div>
+
+              <button
+                onClick={() => { setDeleteStep(1); setShowDeleteConfirm(true); }}
+                className="w-full mt-4 py-2.5 rounded-xl border border-rose-500/50 text-rose-500 font-medium text-sm hover:bg-rose-500/10"
+              >
+                {t('deleteCounter') || 'Delete Counter'}
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showDeleteConfirm && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-[60]"
+            onClick={() => { setShowDeleteConfirm(false); setDeleteStep(0); }}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-[var(--surface)] w-full max-w-sm rounded-3xl p-5 shadow-2xl"
+              onClick={e => e.stopPropagation()}
+            >
+              <div className="text-center">
+                <div className="w-14 h-14 rounded-full bg-rose-500/20 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">⚠️</span>
+                </div>
+                <h3 className="text-lg font-semibold mb-2">
+                  {deleteStep === 1 ? 'Delete Counter?' : 'Are you sure?'}
+                </h3>
+                <p className="text-sm text-[var(--text-secondary)] mb-6">
+                  {deleteStep === 1 
+                    ? `"${counter.title}" will be permanently deleted.`
+                    : 'This action cannot be undone. All data for this counter will be lost.'}
+                </p>
+                
+                {deleteStep === 1 ? (
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => { setShowDeleteConfirm(false); setDeleteStep(0); }}
+                      className="flex-1 py-2.5 rounded-xl bg-[var(--background)] font-medium text-sm"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={() => setDeleteStep(2)}
+                      className="flex-1 py-2.5 rounded-xl bg-rose-500 text-white font-medium text-sm"
+                    >
+                      Yes, Continue
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => { setShowDeleteConfirm(false); setDeleteStep(0); }}
+                      className="flex-1 py-2.5 rounded-xl bg-[var(--background)] font-medium text-sm"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={handleDelete}
+                      className="flex-1 py-2.5 rounded-xl bg-rose-600 text-white font-medium text-sm"
+                    >
+                      Delete Forever
+                    </button>
+                  </div>
+                )}
               </div>
             </motion.div>
           </motion.div>
