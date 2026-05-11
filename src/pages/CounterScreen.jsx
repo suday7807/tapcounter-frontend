@@ -264,9 +264,9 @@ function CounterScreen() {
             >
               <div className="text-center">
                 <div className="w-14 h-14 rounded-full bg-rose-500/20 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">⚠️</span>
+                  <span className="text-2xl text-rose-500">⚠️</span>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">
+                <h3 className="text-lg font-semibold mb-2 text-[var(--text-primary)]">
                   {deleteStep === 1 ? 'Delete Counter?' : 'Are you sure?'}
                 </h3>
                 <p className="text-sm text-[var(--text-secondary)] mb-6">
@@ -285,7 +285,7 @@ function CounterScreen() {
                     </button>
                     <button
                       onClick={() => setDeleteStep(2)}
-                      className="flex-1 py-2.5 rounded-xl bg-rose-500 text-white font-medium text-sm"
+                      className="flex-1 py-2.5 rounded-xl bg-rose-500 text-white font-medium text-sm hover:bg-rose-600"
                     >
                       Yes, Continue
                     </button>
@@ -300,7 +300,7 @@ function CounterScreen() {
                     </button>
                     <button
                       onClick={handleDelete}
-                      className="flex-1 py-2.5 rounded-xl bg-rose-600 text-white font-medium text-sm"
+                      className="flex-1 py-2.5 rounded-xl bg-rose-600 text-white font-medium text-sm hover:bg-rose-700"
                     >
                       Delete Forever
                     </button>
