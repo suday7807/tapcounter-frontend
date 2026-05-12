@@ -25,4 +25,6 @@ function App() {
   );
 }
 
+//Made in Bharat with ❤️ by Uday
+
 export default App;
